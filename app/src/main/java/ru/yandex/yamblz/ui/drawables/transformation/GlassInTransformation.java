@@ -20,7 +20,7 @@ public class GlassInTransformation extends UiTransformation{
         glassHandPath=new AnimatedPathWrapper();
         glassHandPath.addPoint(64,60,0);
         glassHandPath.addPoint(64,60,0.5f);
-        glassHandPath.addPoint(75,80,0.5f);
+        glassHandPath.addPoint(80,80,0.5f);
 
         letterPath=new AnimatedPathDisappearWrapper();
         letterPath.addPoint(50,80,0);
