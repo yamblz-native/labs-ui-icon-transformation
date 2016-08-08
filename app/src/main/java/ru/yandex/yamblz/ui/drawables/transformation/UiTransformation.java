@@ -2,6 +2,7 @@ package ru.yandex.yamblz.ui.drawables.transformation;
 
 
 import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -27,7 +28,15 @@ public abstract class UiTransformation {
         return animator;
     }
 
-    protected abstract Animator initAnimator();
+    protected Animator initAnimator() {
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+        animator.setDuration(1000);
+        animator.addUpdateListener(
+                animation -> {
+                    draw((Float) animation.getAnimatedValue());
+                });
+        return animator;
+    }
 
     public void draw(float time) {
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);

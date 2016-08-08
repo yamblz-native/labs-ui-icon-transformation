@@ -1,8 +1,6 @@
 package ru.yandex.yamblz.ui.drawables.transformation;
 
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -13,14 +11,6 @@ public class ClockOutTransformation extends UiTransformation {
         super(canvas, paint);
     }
 
-    @Override
-    protected Animator initAnimator() {
-        ValueAnimator animator=ValueAnimator.ofFloat(0,1);
-        animator.setDuration(1000);
-        animator.addUpdateListener(
-                animation -> draw((Float) animation.getAnimatedValue()));
-        return animator;
-    }
 
     @Override
     public void draw(float time) {

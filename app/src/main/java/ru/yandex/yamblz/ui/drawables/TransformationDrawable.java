@@ -13,6 +13,8 @@ import java.util.List;
 
 import ru.yandex.yamblz.ui.drawables.transformation.ClockOutTransformation;
 import ru.yandex.yamblz.ui.drawables.transformation.LetterInTransformation;
+import ru.yandex.yamblz.ui.drawables.transformation.LetterOutTransformation;
+import ru.yandex.yamblz.ui.drawables.transformation.UiTransformation;
 
 public class TransformationDrawable extends DefaultLoadingDrawable {
     private static final int SIZE = 500;
@@ -42,10 +44,13 @@ public class TransformationDrawable extends DefaultLoadingDrawable {
     protected List<Animator> createAnimators() {
         List<Animator> animators = new ArrayList<>();
         AnimatorSet animatorSet = new AnimatorSet();
-        ClockOutTransformation clockOutTransformation = new ClockOutTransformation(bitmapCanvas, defaultPaint);
-        LetterInTransformation letterInTransformation = new LetterInTransformation(bitmapCanvas, defaultPaint);
-        animatorSet.playSequentially(clockOutTransformation.getAnimator()
-                , letterInTransformation.getAnimator());
+        UiTransformation clockOutTransformation = new ClockOutTransformation(bitmapCanvas, defaultPaint);
+        UiTransformation letterInTransformation = new LetterInTransformation(bitmapCanvas, defaultPaint);
+        UiTransformation letterOutTransformation = new LetterOutTransformation(bitmapCanvas, defaultPaint);
+        animatorSet.playSequentially(
+                clockOutTransformation.getAnimator(),
+                letterInTransformation.getAnimator(),
+                letterOutTransformation.getAnimator());
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -57,8 +62,6 @@ public class TransformationDrawable extends DefaultLoadingDrawable {
         animators.add(animatorSet);
         return animators;
     }
-
-
 
 
 }
