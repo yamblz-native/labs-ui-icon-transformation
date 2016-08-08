@@ -4,6 +4,7 @@ package ru.yandex.yamblz.ui.drawables;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.yandex.yamblz.ui.drawables.transformation.ClockOutTransformation;
+import ru.yandex.yamblz.ui.drawables.transformation.GlassInTransformation;
 import ru.yandex.yamblz.ui.drawables.transformation.LetterInTransformation;
 import ru.yandex.yamblz.ui.drawables.transformation.LetterOutTransformation;
 import ru.yandex.yamblz.ui.drawables.transformation.UiTransformation;
@@ -47,10 +49,15 @@ public class TransformationDrawable extends DefaultLoadingDrawable {
         UiTransformation clockOutTransformation = new ClockOutTransformation(bitmapCanvas, defaultPaint);
         UiTransformation letterInTransformation = new LetterInTransformation(bitmapCanvas, defaultPaint);
         UiTransformation letterOutTransformation = new LetterOutTransformation(bitmapCanvas, defaultPaint);
+        UiTransformation glassInTransformation = new GlassInTransformation(bitmapCanvas, defaultPaint);
         animatorSet.playSequentially(
                 clockOutTransformation.getAnimator(),
                 letterInTransformation.getAnimator(),
-                letterOutTransformation.getAnimator());
+                ValueAnimator.ofFloat(0,1).setDuration(1000),
+                letterOutTransformation.getAnimator(),
+                glassInTransformation.getAnimator(),
+                ValueAnimator.ofFloat(0,1).setDuration(1000)
+        );
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
