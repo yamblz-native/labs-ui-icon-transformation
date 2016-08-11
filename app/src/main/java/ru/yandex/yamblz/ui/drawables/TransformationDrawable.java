@@ -4,6 +4,7 @@ package ru.yandex.yamblz.ui.drawables;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -52,13 +53,13 @@ public class TransformationDrawable extends DefaultLoadingDrawable {
         UiTransformation glassInTransformation = new GlassInTransformation(bitmapCanvas, defaultPaint);
         UiTransformation glassOutTransformation = new GlassOutInfinityInTransformation(bitmapCanvas, defaultPaint);
         animatorSet.playSequentially(
-                //clockOutTransformation.getAnimator(),
-               // letterInTransformation.getAnimator(),
-               // ValueAnimator.ofFloat(0,1).setDuration(1000),
-               // letterOutTransformation.getAnimator(),
+                clockOutTransformation.getAnimator(),
+                letterInTransformation.getAnimator(),
+                ValueAnimator.ofFloat(0,1).setDuration(1000),
+                letterOutTransformation.getAnimator(),
                glassInTransformation.getAnimator(),
-                glassOutTransformation.getAnimator()
-               // ValueAnimator.ofFloat(0,1).setDuration(1000)
+                glassOutTransformation.getAnimator(),
+                ValueAnimator.ofFloat(0,1).setDuration(1000)
         );
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override

@@ -33,7 +33,7 @@ public class GlassOutInfinityInTransformation extends UiTransformation{
     @Override
     protected Animator initAnimator() {
         Animator animator = super.initAnimator();
-        animator.setDuration(5000);
+        animator.setDuration(1000);
         return animator;
     }
 

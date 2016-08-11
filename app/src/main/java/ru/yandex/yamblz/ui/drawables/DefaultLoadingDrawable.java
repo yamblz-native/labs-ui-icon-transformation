@@ -23,7 +23,7 @@ public abstract class DefaultLoadingDrawable extends Drawable implements Runnabl
     protected RectF tempRectF;
     private long lastFrame;
     private List<Animator> animators;
-    private boolean drawDebug = true;
+    private boolean drawDebug = false;
     private int status=STOPED;
 
     DefaultLoadingDrawable() {
